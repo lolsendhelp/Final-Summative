@@ -1,4 +1,6 @@
 import random 
+import time
+import os 
 
 def battleship():
     
@@ -61,16 +63,19 @@ def battleship():
             print("HIT! \n\
 You hit their battleship!")
             enemy_battleship_location.remove(player_choice)
+            enemy_health = enemy_health - 1
             
         if player_choice in enemy_cruiser_location:
             print("HIT! \n\
 You hit their cruiser!")
             enemy_cruiser_location.remove(player_choice)
-        
+            enemy_health = enemy_health - 1
+            
         if player_choice in enemy_submarine_location:
             print("HIT! \n\
 You hit their submarine!")
             enemy_submarine_location.remove(player_choice)
+            enemy_health = enemy_health - 1
             
         if player_choice not in enemy_battleship_location or enemy_cruiser_location or enemy_submarine_location and player_choice in grid_locations_opponent:
             print("MISS! \N\
@@ -86,14 +91,17 @@ You hit nothing!")
         if enemy_choice in player_battleship_location:
             print("HIT! \n\
 The enemy hit your battleship!")
+            player_health = player_health - 1
             
         if enemy_choice in player_cruiser_location:
             print("HIT! \n\
 The enemy hit your cruiser!")
+            player_health = player_health - 1
             
         if enemy_choice in player_submarine_location:
             print("HIT! \n\
 The enemy hiit your submarine!")
+            player_health = player_health - 1
         
         if enemy_choice not in player_battleship_location or player_cruiser_location or player_submarine_location and enemy_choice in grid_locations_player:
             print("MISS! \N\
@@ -177,5 +185,47 @@ your submarine on: "))
         player_choice()
         enemy_choice()
         turns = turns + 1
+        
+        if len(enemy_battleship_location) <= 0:
+            os.system('cls')
+            print("You sunk their battleship!")
+            time.sleep(2)
+            os.system('cls')
+        
+        if len(enemy_cruiser_location) <= 0:
+            os.system('cls')
+            print("You sunk their cruiser!")
+            time.sleep(2)
+            os.system('cls')
+        
+        if len(enemy_submarine_location) <= 0:
+            os.system('cls')
+            print("You sunk their submarine!")
+            time.sleep(2)
+            os.system('cls')
+        
+        if len(player_battleship_location) <= 0:
+            os.system('cls')
+            print("You sunk their battleship")
+            time.sleep(2)
+            os.system('cls')
+        
+        if len(player_cruiser_location) <= 0:
+            os.system('cls')
+            print("You sunk their battleship")
+            time.sleep(2)
+            os.system('cls')
+        
+        if len(player_submarine_location) <= 0:
+            os.system('cls')
+            print("You sunk their battleship")
+            time.sleep(2)
+            os.system('cls')
+    
+    if player_health <= 0:
+        print("You lost!")
+    
+    if enemy_health <= 0:
+        print("You won!")
         
 battleship()
