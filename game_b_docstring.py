@@ -20,23 +20,23 @@ def battleship():
     enemy_health = 9
     turns = 0
     
-    enemy_place_battleship = random.choice(grid_locations_opponent)
+    enemy_place_battleship = random.randint(1,21)
     for i in range(4):
         enemy_battleship_location.append(enemy_place_battleship)
         enemy_place_battleship = enemy_place_battleship + 1
-        grid_locations_opponent.remove(enemy_battleship_location)
+        grid_locations_opponent.remove(enemy_battleship_location[i])
         
     enemy_place_cruiser = random.choice(grid_locations_opponent)
-    for i in range(4):
+    for i in range(3):
         enemy_cruiser_location.append(enemy_place_cruiser)
         enemy_place_cruiser = enemy_place_cruiser + 1
-        grid_locations_opponent.remove(enemy_cruiser_location)
+        grid_locations_opponent.remove(enemy_cruiser_location[i])
         
     enemy_place_submarine = random.choice(grid_locations_opponent)
-    for i in range(4):
+    for i in range(2):
         enemy_submarine_location.append(enemy_place_submarine)
         enemy_place_submarine = enemy_place_submarine + 1
-        grid_locations_opponent.remove(enemy_submarine_location)
+        grid_locations_opponent.remove(enemy_submarine_location[i])
     
     def draw_grid():
         """""
@@ -115,8 +115,6 @@ You hit nothing!")
 1. You must destroy every single boat in order to win the game \n\
 2. You must choose a location on the grid in order to call a hit \n\
 3. Each space of the grid has a number associated with it \n\
-4. If a player gets a hit they are given a chance to try again \n\
-5. If a player misses they are not given a chance to go again \n\
 the numbers start at the bottom left of the board and go up until 25 \n\
 which is the top right of the board. \n\
 ")
