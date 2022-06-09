@@ -4,6 +4,7 @@ def battleship():
     
     grid_locations_player = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
     grid_locations_opponent = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    grid_locations_opponent_choices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
     
     player_battleship_location = []
     player_cruiser_location = []
@@ -55,34 +56,52 @@ def battleship():
 
     def player_choice():
         player_choice = int(input("Where do you want to hit?: "))
-        hit = 0
         
         if player_choice in enemy_battleship_location:
             print("HIT! \n\
 You hit their battleship!")
             enemy_battleship_location.remove(player_choice)
-            hit = hit + 1
             
         if player_choice in enemy_cruiser_location:
             print("HIT! \n\
 You hit their cruiser!")
             enemy_cruiser_location.remove(player_choice)
-            hit = hit + 1
         
         if player_choice in enemy_submarine_location:
             print("HIT! \n\
 You hit their submarine!")
             enemy_submarine_location.remove(player_choice)
-            hit = hit + 1
             
         if player_choice not in enemy_battleship_location or enemy_cruiser_location or enemy_submarine_location and player_choice in grid_locations_opponent:
             print("MISS! \N\
 You hit nothing!")
         
         if player_choice not in enemy_battleship_location or enemy_cruiser_location or enemy_submarine_location and player_choice not in grid_locations_opponent:
-            print()
+            print("Invalid choice")
         
-        return hit
+    
+    def enemy_choice():
+        enemy_choice = random.choice(grid_locations_opponent_choices)
+        
+        if enemy_choice in player_battleship_location:
+            print("HIT! \n\
+The enemy hit your battleship!")
+            
+        if enemy_choice in player_cruiser_location:
+            print("HIT! \n\
+The enemy hit your cruiser!")
+            
+        if enemy_choice in player_submarine_location:
+            print("HIT! \n\
+The enemy hiit your submarine!")
+        
+        if enemy_choice not in player_battleship_location or player_cruiser_location or player_submarine_location and enemy_choice in grid_locations_player:
+            print("MISS! \N\
+You hit nothing!")
+        
+        if enemy_choice not in player_battleship_location or player_cruiser_location or player_submarine_location and enemy_choice not in grid_locations_player:
+            print("Invalid choice")
+        
     
     print("Rules of the game \n\
 1. You must destroy every single boat in order to win the game \n\
@@ -155,14 +174,8 @@ your submarine on: "))
     #draw_submarine()
     
     while player_health > 0 and enemy_health > 9 and turns > 25:
-        hit = player_choice()
-        
-        if hit == 1:
-            player_choice()
-        
-        elif hit 
-        
-
-            
+        player_choice()
+        enemy_choice()
+        turns = turns + 1
         
 battleship()
