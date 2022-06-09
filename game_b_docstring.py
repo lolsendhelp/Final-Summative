@@ -22,19 +22,19 @@ def battleship():
     
     enemy_place_battleship = random.choice(grid_locations_opponent)
     for i in range(4):
-        enemy_battleship_location = enemy_place_battleship
+        enemy_battleship_location.append(enemy_place_battleship)
         enemy_place_battleship = enemy_place_battleship + 1
         grid_locations_opponent.remove(enemy_battleship_location)
         
     enemy_place_cruiser = random.choice(grid_locations_opponent)
     for i in range(4):
-        enemy_cruiser_location = enemy_place_cruiser
+        enemy_cruiser_location.append(enemy_place_cruiser)
         enemy_place_cruiser = enemy_place_cruiser + 1
         grid_locations_opponent.remove(enemy_cruiser_location)
         
     enemy_place_submarine = random.choice(grid_locations_opponent)
     for i in range(4):
-        enemy_submarine_location = enemy_place_submarine
+        enemy_submarine_location.append(enemy_place_submarine)
         enemy_place_submarine = enemy_place_submarine + 1
         grid_locations_opponent.remove(enemy_submarine_location)
     
@@ -78,7 +78,7 @@ You hit their submarine!")
             enemy_health = enemy_health - 1
             
         if player_choice not in enemy_battleship_location or enemy_cruiser_location or enemy_submarine_location and player_choice in grid_locations_opponent:
-            print("MISS! \N\
+            print("MISS! \n\
 You hit nothing!")
         
         if player_choice not in enemy_battleship_location or enemy_cruiser_location or enemy_submarine_location and player_choice not in grid_locations_opponent:
@@ -104,7 +104,7 @@ The enemy hiit your submarine!")
             player_health = player_health - 1
         
         if enemy_choice not in player_battleship_location or player_cruiser_location or player_submarine_location and enemy_choice in grid_locations_player:
-            print("MISS! \N\
+            print("MISS! \n\
 You hit nothing!")
         
         if enemy_choice not in player_battleship_location or player_cruiser_location or player_submarine_location and enemy_choice not in grid_locations_player:
@@ -128,14 +128,14 @@ your battleship on: "))
     
     if battleship_orientation == "vert":
         for i in range(4):
-            player_battleship_location = place_battleship
+            player_battleship_location.append(place_battleship)
             place_battleship = place_battleship + 3
             grid_locations_player.remove(player_battleship_location) 
             
     
     if battleship_orientation == "hor":
         for i in range(4):
-            player_battleship_location = place_battleship
+            player_battleship_location.append(place_battleship)
             place_battleship = place_battleship + 1
             grid_locations_player.remove(player_battleship_location)
     
@@ -146,13 +146,13 @@ your cruiser on: "))
     
     if cruiser_orientation == "vert":
         for i in range(4):
-            player_cruiser_location = place_cruiser
+            player_cruiser_location.append(place_cruiser)
             place_cruiser = place_cruiser + 3
             grid_locations_player.remove(player_cruiser_location)
         
     if cruiser_orientation == "hor":
         for i in range(4):
-            player_cruiser_location = place_cruiser
+            player_cruiser_location.append(place_cruiser)
             place_cruiser = place_cruiser + 1
             grid_locations_player.remove(player_cruiser_location)
         
@@ -163,13 +163,13 @@ your submarine on: "))
 
     if submarine_orientation == "vert":
         for i in range(4):
-            player_submarine_location = place_submarine
+            player_submarine_location.append(place_submarine)
             place_submarine = place_submarine + 3
             grid_locations_player.remove(player_submarine_location)    
         
     if submarine_orientation == "hor":
         for i in range(4):
-            player_submarine_location = place_submarine
+            player_submarine_location.append(place_submarine)
             place_submarine = place_submarine + 1
             grid_locations_player.remove(player_submarine_location)
     
