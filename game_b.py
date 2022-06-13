@@ -42,6 +42,96 @@ def battleship():
         "Turtle will draw 2x1 submarine"
         pass 
     
+    def player_choice():
+        player_choice_x = int(input("What X Coordinate would you like to place your hit on?: "))
+        player_choice_y = int(input("What Y coordinate would you like to place your hit on ?: "))
+        
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "1":
+            print("HIT! \n\
+You hit their Carrier!")
+            enemy_board[player_choice_x - 1][player_choice_y - 1] = "X"
+            enemy_health = enemy_health - 1
+            
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "2":
+            print("HIT! \n\
+You hit their Battleship!")
+            enemy_board[player_choice_x - 1][player_choice_y - 1] = "X"
+            enemy_health = enemy_health - 1
+            
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "3":
+            print("HIT! \n\
+You hit their Cruiser!")
+            enemy_board[player_choice_x - 1][player_choice_y - 1] = "X"
+            enemy_health = enemy_health - 1
+            
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "4":
+            print("HIT! \n\
+You hit their Submarine!")
+            enemy_board[player_choice_x - 1][player_choice_y - 1] = "X"
+            enemy_health = enemy_health - 1
+        
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "0":
+            print("MISS! \n\
+You hit nothing!")
+            enemy_board[player_choice_x - 1][player_choice_y - 1] = "X"
+        
+        if enemy_board[player_choice_x - 1][player_choice_y - 1] == "X":
+            print("You already hit that location!")
+        
+        else:
+            print("Error")
+
+    def enemy_choice():
+        enemy_choice_x = random.randint(1,10)
+        enemy_choice_y = random.randint(1,10)
+        
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "1":
+            print("HIT! \n\
+They hit your Carrier!")
+            time.sleep(2)
+            os.system('cls')
+            player_board[enemy_choice_x - 1][enemy_choice_y - 1] = "X"
+            player_health = player_health - 1
+            
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "2":
+            print("HIT! \n\
+They hit your Battleship!")
+            time.sleep(2)
+            os.system('cls')
+            player_board[enemy_choice_x - 1][enemy_choice_y - 1] = "X"
+            player_health = player_health - 1
+            
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "3":
+            print("HIT! \n\
+They hit your Cruiser!")
+            time.sleep(2)
+            os.system('cls')
+            player_board[enemy_choice_x - 1][enemy_choice_y - 1] = "X"
+            player_health = player_health - 1
+            
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "4":
+            print("HIT! \n\
+They hit your Submarine!")
+            time.sleep(2)
+            os.system('cls')
+            player_board[enemy_choice_x - 1][enemy_choice_y - 1] = "X"
+            player_health = player_health - 1
+        
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "0":
+            print("MISS! \n\
+You hit nothing!")
+            time.sleep(2)
+            os.system('cls')
+            player_board[enemy_choice_x - 1][enemy_choice_y - 1] = "X"
+        
+        if player_board[enemy_choice_x - 1][enemy_choice_y - 1] == "X":
+            print("You already hit that location!")
+            time.sleep(2)
+            os.system('cls')
+        
+        else:
+            print("Error")
+            
     player_health = 9
     enemy_health = 9
     turns = 0
@@ -147,6 +237,13 @@ your submarine on: "))
             player_board[place_submarine_x - 1][place_submarine_y - 1] = "3"
             place_submarine_y = place_submarine_y + 1
             
+    while player_health > 0 and enemy_health > 9 and turns <= 25:
+        player_choice()
+        enemy_choice()
+        turns = turns + 1
+        
+        
+        
     return battleship_win
 
 battleship_win = battleship()
