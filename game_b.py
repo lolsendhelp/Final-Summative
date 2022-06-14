@@ -2,6 +2,7 @@ import random
 import turtle
 import time 
 import os 
+import numpy
 
 def battleship():
     battleship_win = False 
@@ -41,6 +42,9 @@ def battleship():
     def draw_submarine():
         "Turtle will draw 2x1 submarine"
         pass 
+    
+    player_health = 9
+    enemy_health = 9
     
     def player_choice():
         player_choice_x = int(input("What X Coordinate would you like to place your hit on?: "))
@@ -131,10 +135,6 @@ You hit nothing!")
         
         else:
             print("Error")
-            
-    player_health = 9
-    enemy_health = 9
-    turns = 0
     
     player_board = init_player_board()
     enemy_board = init_enemy_board()
@@ -154,14 +154,11 @@ You hit nothing!")
     print("Rules of the game \n\
 1. You must destroy every single boat in order to win the game \n\
 2. You must choose a location on the grid in order to call a hit \n\
-3. Each space of the grid has a number associated with it \n\
-the numbers start at the bottom left of the board and go up until 25 \n\
-which is the top right of the board. \n\
 ")
     time.sleep(3)
     os.system('cls')
     
-    carrier_orientation = input("What orientation would you like the ba to be? (v/h): ")
+    carrier_orientation = input("What orientation would you like the carrier to be? (v/h): ")
     carrier_orientation = carrier_orientation.lower()
     place_carrier_x = int(input("Please enter the X coordinate you want to position \n\
 your carrier on: "))
@@ -169,13 +166,13 @@ your carrier on: "))
 your carrier on: "))
     
     if carrier_orientation == "h":
-        for i in range(4):
-            player_board[place_carrier_x - 1][place_carrier_y - 1] = "1"
+        for i in range(5):
+            player_board[place_carrier_y - 1][place_carrier_x - 1] = "1"
             place_carrier_x = place_carrier_x + 1
             
     if carrier_orientation == "v":
-        for i in range(4):
-            player_board[place_carrier_x - 1][place_carrier_y - 1] = "1"
+        for i in range(5):
+            player_board[place_carrier_y - 1][place_carrier_x - 1] = "1"
             place_carrier_y = place_carrier_y + 1
     
     battleship_orientation = input("What orientation would you like the battleship to be? (v/h): ")
@@ -187,12 +184,12 @@ your battleship on: "))
     
     if battleship_orientation == "h":
         for i in range(4):
-            player_board[place_battleship_x - 1][place_battleship_y - 1] = "1"
+            player_board[place_battleship_y - 1][place_battleship_x - 1] = "2"
             place_battleship_x = place_battleship_x + 1
             
     if battleship_orientation == "v":
         for i in range(4):
-            player_board[place_battleship_x - 1][place_battleship_y - 1] = "1"
+            player_board[place_battleship_y - 1][place_battleship_x - 1] = "2"
             place_battleship_y = place_battleship_y + 1
             
     cruiser_orientation = input("What orientation would you like the cruiser to be? (v/h): ")
@@ -203,13 +200,13 @@ your cruiser on: "))
 your cruiser on: "))
     
     if cruiser_orientation == "h":
-        for i in range(4):
-            player_board[place_cruiser_x - 1][place_cruiser_y - 1] = "2"
+        for i in range(3):
+            player_board[place_cruiser_y - 1][place_cruiser_x - 1] = "3"
             place_cruiser_x = place_cruiser_x + 1
             
     if cruiser_orientation == "v":
-        for i in range(4):
-            player_board[place_cruiser_x - 1][place_cruiser_y - 1] = "2"
+        for i in range(3):
+            player_board[place_cruiser_y - 1][place_cruiser_x - 1] = "3"
             place_cruiser_y = place_cruiser_y + 1
     
     submarine_orientation = input("What orientation would you like the submarine to be? (v/h): ")
@@ -220,19 +217,25 @@ your submarine on: "))
 your submarine on: "))
     
     if submarine_orientation == "h":
-        for i in range(4):
-            player_board[place_submarine_x - 1][place_submarine_y - 1] = "3"
+        for i in range(2):
+            player_board[place_submarine_y - 1][place_submarine_x - 1] = "4"
             place_submarine_x = place_submarine_x + 1
             
     if submarine_orientation == "v":
-        for i in range(4):
-            player_board[place_submarine_x - 1][place_submarine_y - 1] = "3"
+        for i in range(2):
+            player_board[place_submarine_y - 1][place_submarine_x - 1] = "4"
             place_submarine_y = place_submarine_y + 1
-            
-    while player_health > 0 and enemy_health > 9 and turns <= 25:
+    
+    numpy.array(player_board)
+    print(numpy.reshape(player_board, (10,10)))
+    time.sleep(15)
+    print(" ")
+    numpy.array(enemy_board)
+    print(numpy.reshape(enemy_board,(5,5)))
+    
+    while player_health > 0 and enemy_health > 0:
         player_choice()
         enemy_choice()
-        turns = turns + 1
     
     if player_health <= 0:
         print("You lost!")
