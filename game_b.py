@@ -140,25 +140,17 @@ You hit nothing!")
     enemy_board = init_enemy_board()
     
     for i in range(5):
-        counter = 0
-        enemy_board[9][2 + counter] = "1"
-        counter = counter + 1
-    
+        enemy_board[0][0 + i] = "1"
+        
     for i in range(4):
-        counter = 0
-        enemy_board[1 + counter][1] = "2"
-        counter = counter + 1
+        enemy_board[1 + i][1] = "2"
     
     for i in range(3):
-        counter = 0
-        enemy_board[4][4 + counter] = "3"
-        counter = counter + 1
+        enemy_board[4][2 + i] = "3"
         
     for i in range(2):
-        counter = 0
-        enemy_board[9 + counter][3] = "4"
-        counter = counter + 1
-        
+        enemy_board[2 + i][3] = "4"
+    
     print("Rules of the game \n\
 1. You must destroy every single boat in order to win the game \n\
 2. You must choose a location on the grid in order to call a hit \n\
@@ -241,15 +233,15 @@ your submarine on: "))
         player_choice()
         enemy_choice()
         turns = turns + 1
-        
-        
+    
+    if player_health <= 0:
+        print("You lost!")
+        battleship_win = False 
+    
+    if player_health > 0 and enemy_health <=0:
+        print("You won!")
+        battleship_win = True
         
     return battleship_win
 
 battleship_win = battleship()
-
-if battleship_win == True:
-    print("You won!")
-
-if battleship_win == False:
-    print("You lost!")
